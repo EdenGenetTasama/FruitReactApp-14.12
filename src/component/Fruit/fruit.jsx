@@ -1,62 +1,49 @@
-import React from "react";
+import React, { Component } from "react";
+
 
 class Fruit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "Apple",
-      veg: "",
-      text: " ",
-      array: [1, 3, 4, 5, 6, 8],
-    };
-    this.showArrayInfo = this.showArrayInfo.bind(this);
-    this.btnFuncFruit = this.btnFuncFruit.bind(this);
-    this.funcInputFruit = this.funcInputFruit.bind(this);
-  }
-  showArrayInfo() {
-    for (let i = 0; i < this.state.array.length; i++) {
-      <li>this.state.array[i]</li>;
+    constructor(props) {
+        super(props)
+        this.state = { title: "this component for add spice", text: "", spice: "paprika" ,array:[] }
+        this.title = this.title.bind(this)
+        this.funcInput = this.funcInput.bind(this)
+        this.btnFunc = this.btnFunc.bind(this)
     }
-  }
 
-  onClickAction() {
-    const arrayToAdd = this.state.array;
-    this.setState({ array: arrayToAdd });
-  }
+    title() {
+        const nameOfTitle = this.state.title;
+        this.setState({ title: nameOfTitle });
+    }
 
-  btnFuncFruit() {
-    const btn = this.state.veg;
-    this.setState({ text: btn });
-  }
+    funcInput(event) {
 
-  funcInputFruit(event) {
-    const inp = event.target.value;
-    this.setState({ text: inp });
-  }
+        const inp = event.target.value;
+        this.setState({ text: inp })
+    }
 
-  render() {
-    return (
-      <div>
-        <h2>This is adding Component {this.state.name}</h2>
-        {/* <input value={this.state.name}></input> */}
-        <input type="text" onChange={this.funcInputFruit}></input>
-        <button type="button" onClick={this.btnFuncFruit}>
-          PRESS HERE
-        </button>
-        <p>Lorem, ipsum. Sunt, corporis? Totam, nihil.</p>
-        {/* <p>{this.showArrayInfo()}</p> */}
-        {/* {this.state.array.forEach(element => {
-        <li></li>
-        })} */}
+    btnFunc() {
+        const btn = this.state.spice;
+        this.setState({array: btn})
+    }
 
-        {/* <li>{this.state.array[0]}</li>
-        <li>{this.state.array[1]}</li>
-        <li>{this.state.array[2]}</li>
-        <li>{this.state.array[3]}</li>
-        <li>{this.state.array[4]}</li> */}
-      </div>
-    );
-  }
+
+
+    render() {
+        return (
+            <div>
+                <h1 className="spiceetable">{this.state.title}</h1>
+                <input onChange={this.funcInput}></input>
+                <h1>{this.state.text}</h1>
+                <button onClick={this.btnFunc}>Add</button>
+
+                <ul>
+                    <li>{this.state.array}</li>
+                </ul>
+               
+
+            </div>
+        )
+    }
 }
 
 export default Fruit;
