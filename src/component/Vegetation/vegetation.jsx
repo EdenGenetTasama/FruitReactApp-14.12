@@ -1,50 +1,36 @@
-import React, { Component }  from "react";
+import React, { Component } from "react";
 
-class VegetationAdd extends React.Component {
+class Vegetable extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-        name:"TOMATO",
-      text: "",
-      veg: "onion",
-      array: [],
-    };
-    this.funcInputF = this.funcInputF.bind(this);
-    this.btnFunF = this.btnFunF.bind(this);
+    this.state = { vegName: "", vegArray: [] };
+    this.changeInput = this.changeInput.bind(this);
+    this.clickEven = this.clickEven.bind(this);
   }
 
-  funcInputF(event) {
+  changeInput(event) {
+    this.state.vegName = event.target.value;
+  }
 
-    const inp = event.target.value;
-    this.setState({ text: inp })
-}
-
-btnFunF() {
-    const btn = this.state.canned;
-    this.setState({array: btn})
-}
+  clickEven() {
+    this.state.vegArray.push(this.state.vegName);
+    this.setState({vegName : this.state.vegName})
+  }
 
   render() {
     return (
       <div>
-        <h2>This is adding Component {this.state.name}</h2>
-  
-        <input onChange={this.funcInput}></input>
-        <button onClick={this.btnFunc}>press</button>
-        <p>Lorem, ipsum. Sunt, corporis? Totam, nihil.</p>
-        {/* <p>{this.showArrayInfo()}</p> */}
-        {/* {this.state.array.forEach(element => {
-        <li></li>
-        })} */}
-
-        {/* <li>{this.state.array[0]}</li>
-        <li>{this.state.array[1]}</li>
-        <li>{this.state.array[2]}</li>
-        <li>{this.state.array[3]}</li>
-        <li>{this.state.array[4]}</li> */}
+        <h1>This is component {this.state.vegName}</h1>
+        <input onChange={this.changeInput}></input>
+        <button onClick={this.clickEven}>Add</button>
+        <ul>
+          {this.state.vegArray.map((veg) => {
+            <li>{veg}</li>;
+          })}
+        </ul>
       </div>
     );
   }
 }
 
-export default VegetationAdd;
+export default Vegetable;
